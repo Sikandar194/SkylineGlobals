@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Transaction</title>
+  </head>
+  <body>
+    <h1>Edit Transaction</h1>
+    <form method="POST">
+      <label for="amount">Amount:</label>
+      <input
+        type="text"
+        name="amount"
+        value="{{ transaction.Amount }}"
+        required
+      />
+      
+      <label for="debitFrom">Debit From:</label>
+      <select name="debitFrom">
+        {% for account in accounts %}
+        <option value="" {% if transaction.DebitFrom is none %}selected{% endif %}>Select an account</option>
+            {% if account.Id == transaction.DebitFrom %} selected {% endif %}>
+            {{ account.Name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <label for="creditTo">Credit To:</label>
+<select name="creditTo">
+  <option value="" {% if transaction.CreditTo is none %}selected{% endif %}>Select an account</option>
+  {% for account in accounts %}
+    <option value="{{ account.Id }}"
+      {% if transaction.CreditTo == account.Id %} selected {% endif %}>
+      {{ account.Name }}
+    </option>
+  {% endfor %}
+</select>
+
+
+
+      <label for="description">Description:</label>
+      <input
+        type="text"
+        name="description"
+        value="{{ transaction.Description }}"
+        required
+      />
+
+      <label for="parentCategory">Parent Category:</label>
+      <select name="parentCategory">
+        {% for category in categories %}
+          <option value="{{ category.Id }}"
+            {% if category.Id == transaction.ParentCategoryId %} selected {% endif %}>
+            {{ category.Name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <label for="type">Transaction Type:</label>
+      <select name="type">
+        {% for transactionType in transactionTypes %}
+          <option value="{{ transactionType.Id }}"
+            {% if transactionType.Id == transaction.TypeId %} selected {% endif %}>
+            {{ transactionType.Name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <label for="date">Date:</label>
+      <input
+        type="text"
+        name="date"
+        value="{{ transaction.Date }}"
+        required
+      />
+
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

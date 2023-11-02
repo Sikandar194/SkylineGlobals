@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Categories List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <h1>Categories List</h1>
+    <ul>
+      {% for category in categories %}
+      <li>
+        {{ category.Name }}
+        <form method="POST" action="/deleteCategory/{{ category.Id }}">
+          <button type="submit">Delete</button>
+        </form>
+
+        <a href="{{ url_for('category.editCategory', id=category.Id) }}"
+          ><i class="fas fa-edit"></i
+        ></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

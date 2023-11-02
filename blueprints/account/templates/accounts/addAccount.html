@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Categories List</title>
+  </head>
+  <body>
+    <h1>Categories List</h1>
+    <form method="POST" action="{{ url_for('account.addAccount') }}">
+      <label for="name">Name:</label>
+      <input name="name" required /><br /><br />
+
+      <label for="description">Description:</label>
+      <textarea name="description" required></textarea><br /><br />
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

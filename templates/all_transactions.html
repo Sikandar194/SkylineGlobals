@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Transaction</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <h1>All Transactions</h1>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Edit</th>
+      </tr>
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{ transaction.Description }}</td>
+        <td>
+          <a
+            href="{{ url_for('transaction.editTransaction', id=transaction.Id) }}"
+            ><i class="fas fa-edit"></i
+          ></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

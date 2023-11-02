@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Transaction</title>
+  </head>
+  <body>
+    <h1>Add Transaction</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <form method="POST" action="{{ url_for('transaction.addTransaction') }}">
+      <label for="amount">Amount:</label>
+      <input type="number" name="amount" required /><br /><br />
+
+      <label for="debitTo">Debit From:</label>
+      <select name="debitTo">
+        <option value="" selected>Select an account</option>
+        {% for account in accounts %}
+        <option value="{{ account.Id }}">{{ account.Name }}</option>
+        {% endfor %}</select
+      ><br /><br />
+
+      <label for="creditTo">Credit To:</label>
+      <select name="creditTo">
+        <option value="" selected>Select an account</option>
+        {% for account in accounts %}
+        <option value="{{ account.Id }}">{{ account.Name }}</option>
+        {% endfor %}</select
+      ><br /><br />
+
+      <label for="description">Description:</label>
+      <textarea name="description" required></textarea><br /><br />
+
+      <label for="parentCategory">Category:</label>
+      <select name="parentCategory" required>
+        {% for category in categories %}
+        <option value="{{ category.Id }}">{{ category.Name }}</option>
+        {% endfor %}</select
+      ><br /><br />
+
+      <br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
